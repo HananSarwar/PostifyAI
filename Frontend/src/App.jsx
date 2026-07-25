@@ -5,6 +5,7 @@ import Login from './pages/Auth/Login'
 import Signup from './pages/Auth/Signup'
 import Dashboard from './pages/Dashboard/Dashboard'
 import PrivateRoute from './components/common/PrivateRoute'
+
 function App() {
   return (
     <Provider store={store}>
