@@ -1,0 +1,146 @@
+@import "tailwindcss";
+:root {
+  /* Backgrounds */
+  --bg-primary:     #0F0F0F;
+  --bg-secondary:   #141414;
+  --bg-card:        #1A1A1A;
+  --bg-input:       #222222;
+  --bg-hover:       #2A2A2A;
+
+  /* Text */
+  --text-primary:   #FFFFFF;
+  --text-secondary: #888888;
+  --text-muted:     #555555;
+
+  /* Borders */
+  --border:         #2A2A2A;
+  --border-light:   #333333;
+
+  /* Buttons */
+  --btn-bg:         #FFFFFF;
+  --btn-text:       #000000;
+  --btn-hover:      #E0E0E0;
+
+  /* Status colors */
+  --success:        #4CAF50;
+  --error:          #F44336;
+  --warning:        #FFA500;
+  --info:           #2196F3;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 10px;
+}
+
+/* Reusable classes */
+.card {
+  background: var(--bg-card);
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.btn-primary {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-primary:hover {
+  background: var(--btn-hover);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 0.5px solid var(--border-light);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.btn-outline:hover {
+  border-color: var(--text-secondary);
+}
+
+.input-field {
+  width: 100%;
+  background: var(--bg-input);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input-field:focus {
+  border-color: #FFFFFF;
+}
+.input-field::placeholder {
+  color: var(--text-muted);
+}
+
+.sidebar {
+  background: var(--bg-secondary);
+  border-right: 0.5px solid var(--border);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-item:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+.nav-item.active {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.badge-success { background: #1a2e1a; color: #4CAF50; }
+.badge-error   { background: #2e1a1a; color: #F44336; }
+.badge-warning { background: #2e2418; color: #FFA500; }
+.badge-neutral { background: var(--bg-hover); color: var(--text-secondary); }
