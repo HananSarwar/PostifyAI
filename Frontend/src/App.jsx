@@ -4,6 +4,7 @@ import store from './redux/store'
 import Login from './pages/Auth/Login'
 import Signup from './pages/Auth/Signup'
 import Dashboard from './pages/Dashboard/Dashboard'
+import Connected from './pages/Connected/Connected'
 import PrivateRoute from './components/common/PrivateRoute'
 
 function App() {
@@ -14,9 +15,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
+            <PrivateRoute><Dashboard /></PrivateRoute>
+          } />
+          <Route path="/connected" element={
+            <PrivateRoute><Connected /></PrivateRoute>
           } />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
