@@ -3,6 +3,7 @@ const cors = require('cors')
 require('dotenv').config()
 
 const authRoutes = require('./routes/authRoute')
+const socialRoutes = require('./routes/socialRoutes')
 
 const app = express()
 
@@ -10,12 +11,16 @@ app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true,
 }))
+
 app.use(express.json())
 
 // Routes
 app.use('/api/auth', authRoutes)
+app.use('/api/social', socialRoutes)
 
 // Health check
-app.get('/', (req, res) => res.send('Postify AI Server is running'))
+app.get('/', (req, res) => {
+  res.send('Postify AI Server is running')
+})
 
 module.exports = app

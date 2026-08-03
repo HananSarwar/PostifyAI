@@ -9,7 +9,7 @@ const {
 const { protect } = require('../middleware/authMiddleware')
 
 // LinkedIn OAuth
-router.get('/linkedin', protect, linkedinAuth)
+router.get('/linkedin', linkedinAuth)
 router.get('/linkedin/callback', linkedinCallback)
 
 // Connected accounts

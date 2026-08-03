@@ -1,15 +1,21 @@
 const axios = require('axios')
+const jwt = require('jsonwebtoken')
 const linkedinConfig = require('../config/linkedin')
 const SocialAccount = require('../models/socialModel')
 
 // Step 1: Redirect user to LinkedIn login
 const linkedinAuth = (req, res) => {
+  const token = req.query.token
+  if (!token) {
+    return res.status(401).json({ message: 'No token provided' })
+  }
+
   const params = new URLSearchParams({
     response_type: 'code',
     client_id: linkedinConfig.clientId,
     redirect_uri: linkedinConfig.redirectUri,
     scope: linkedinConfig.scope.join(' '),
-    state: req.user._id.toString(),
+    state: token,
   })
 
   const authUrl = `${linkedinConfig.authUrl}?${params.toString()}`
@@ -19,7 +25,16 @@ const linkedinAuth = (req, res) => {
 // Step 2: Handle LinkedIn callback
 const linkedinCallback = async (req, res) => {
   const { code, state } = req.query
-  const userId = state
+  const token = state
+
+  // Verify token and get userId
+  let userId
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+    userId = decoded.id
+  } catch (err) {
+    return res.redirect(`${process.env.FRONTEND_URL}/connected?platform=linkedin&status=error`)
+  }
 
   try {
     // Exchange code for access token
@@ -61,7 +76,6 @@ const linkedinCallback = async (req, res) => {
       { upsert: true, new: true }
     )
 
-    // Redirect to frontend
     res.redirect(`${process.env.FRONTEND_URL}/connected?platform=linkedin&status=success`)
   } catch (err) {
     console.error('LinkedIn callback error:', err.message)
