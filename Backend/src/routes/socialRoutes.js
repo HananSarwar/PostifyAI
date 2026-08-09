@@ -8,7 +8,7 @@ const {
 } = require('../controllers/socialController')
 const { protect } = require('../middleware/authMiddleware')
 
-// LinkedIn OAuth
+// LinkedIn OAuth — no protect middleware, token comes via query param
 router.get('/linkedin', linkedinAuth)
 router.get('/linkedin/callback', linkedinCallback)
 
