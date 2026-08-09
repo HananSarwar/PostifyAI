@@ -5,6 +5,8 @@ import Login from './pages/Auth/Login'
 import Signup from './pages/Auth/Signup'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Connected from './pages/Connected/Connected'
+import AIContent from './pages/AIContent/AIContent'
+import BrandKit from './pages/BrandKit/BrandKit'
 import PrivateRoute from './components/common/PrivateRoute'
 
 function App() {
@@ -17,9 +19,9 @@ function App() {
           <Route path="/dashboard" element={
             <PrivateRoute><Dashboard /></PrivateRoute>
           } />
-          <Route path="/connected" element={
-            <PrivateRoute><Connected /></PrivateRoute>
-          } />
+          <Route path="/connected" element={<PrivateRoute><Connected /></PrivateRoute>} />
+          <Route path="/ai-content" element={<PrivateRoute><AIContent /></PrivateRoute>} />
+          <Route path="/brand-kit" element={<PrivateRoute><BrandKit /></PrivateRoute>} />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </BrowserRouter>
